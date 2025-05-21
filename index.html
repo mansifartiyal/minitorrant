@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Torrent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mini-Torrent</h1>
+            <div class="status-bar">
+                <div class="peer-info">
+                    <span>Peer ID: </span>
+                    <span id="peer-id">Loading...</span>
+                </div>
+                <div class="connection-status connected">
+                    <span id="connection-status">Connected</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="file-list-section">
+                <div class="section-header">
+                    <h2>Available Files</h2>
+                    <button id="refresh-files" class="icon-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.38-5.5M22 12.5a10 10 0 0 1-18.38 5.5"/>
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+                <div class="file-list-container">
+                    <table id="file-list">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th>Peers</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Files will be added here via JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="no-files-message" class="hidden">
+                        <p>No files available from tracker</p>
+                    </div>
+                    <div id="loading-files" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading files...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="uploads-downloads">
+                <div class="upload-section">
+                    <h2>Upload a File</h2>
+                    <form id="upload-form">
+                        <div class="upload-area" id="upload-area">
+                            <input type="file" id="file-input" class="file-input">
+                            <div class="upload-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <p>Drag & drop a file or click to upload</p>
+                            </div>
+                        </div>
+                        <button type="submit" id="upload-button" class="primary-button" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Share File
+                        </button>
+                    </form>
+                </div>
+
+                <div class="transfer-section">
+                    <h2>Your Transfers</h2>
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="downloads">Downloads</button>
+                        <button class="tab-button" data-tab="sharing">Sharing</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="downloads">
+                        <div id="no-downloads-message">
+                            <p>No active downloads</p>
+                        </div>
+                        <div id="downloads-list">
+                            <!-- Downloads will be added here via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="sharing">
+                        <div id="no-sharing-message">
+                            <p>You're not sharing any files</p>
+                        </div>
+                        <div id="sharing-list">
+                            <!-- Shared files will be added here via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
