@@ -7,6 +7,7 @@ import threading
 import time
 import uuid
 import argparse
+import logging
 from flask import Flask, request, jsonify
 
 # Initialize Flask app for peer server
@@ -131,11 +132,20 @@ def share_file(filepath):
     else:
         return {"error": "Failed to register with tracker", "details": response.text}
 
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("PeerAnnounce")
+
+ANNOUNCE_INTERVAL = 60  # seconds (can be modified if needed)
+
 def announce_periodically(file_id, num_chunks):
     """Periodically announce to tracker for a specific file"""
+    logger.info(f"Starting periodic announcements for file: {file_id}")
+
     while file_id in shared_files:
         try:
-            requests.post(
+            response = requests.post(
                 f"{TRACKER_URL}/announce",
                 json={
                     "peer_id": peer_id,
@@ -144,10 +154,17 @@ def announce_periodically(file_id, num_chunks):
                     "chunks": list(range(num_chunks))
                 }
             )
-        except:
-            print(f"Failed to announce file {file_id} to tracker")
-        
-        time.sleep(60)  # Announce every minute
+            if response.status_code == 200:
+                logger.info(f"Announced file {file_id} successfully.")
+            else:
+                logger.warning(f"Announce failed for file {file_id}: {response.status_code} {response.text}")
+
+        except Exception as e:
+            logger.error(f"Failed to announce file {file_id} to tracker: {e}")
+
+        time.sleep(ANNOUNCE_INTERVAL)  # Announce at the configured interval
+
+    logger.info(f"Stopped announcements for file: {file_id}")
 
 def download_file(file_id):
     """Download a file by fetching chunks from peers"""
