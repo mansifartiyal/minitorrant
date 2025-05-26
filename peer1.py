@@ -371,6 +371,112 @@ def print_help():
     print("  help              - Show this help message")
     print("  exit              - Exit the client")
 
+def cli():
+    """Simple command-line interface for the peer"""
+    print_help()
+    
+    while True:
+        try:
+            cmd = input("\n> ").strip().split()
+            
+            if not cmd:
+                continue
+            
+            if cmd[0] == "exit":
+                break
+            
+            elif cmd[0] == "help":
+                print_help()
+            
+            elif cmd[0] == "list":
+                try:
+                    response = requests.get(f"{TRACKER_URL}/list")
+                    
+                    if response.status_code == 200:
+                        files = response.json()["files"]
+                        
+                        if not files:
+                            print("No files available")
+                        else:
+                            print("\nAvailable files:")
+                            print("-" * 60)
+                            print(f"{'ID':<18} {'Filename':<30} {'Size':<10} {'Peers'}")
+                            print("-" * 60)
+                            
+                            for file_id, file_info in files.items():
+                                size_str = f"{file_info['size'] / (1024*1024):.2f} MB"
+                                print(f"{file_id:<18} {file_info['filename']:<30} {size_str:<10} {file_info['active_peers']}")
+                    else:
+                        print(f"Error getting file list: {response.text}")
+                except Exception as e:
+                    print(f"Error connecting to tracker: {e}")
+            
+            elif cmd[0] == "download":
+                if len(cmd) < 2:
+                    print("Usage: download [file_id]")
+                    continue
+                
+                file_id = cmd[1]
+                result = download_file(file_id)
+                
+                if "error" in result:
+                    print(f"Error: {result['error']}")
+                else:
+                    print(f"Started downloading {result['filename']} ({result['total_chunks']} chunks)")
+            
+            elif cmd[0] == "share":
+                if len(cmd) < 2:
+                    print("Usage: share [filepath]")
+                    continue
+                
+                filepath = cmd[1]
+                result = share_file(filepath)
+                
+                if "error" in result:
+                    print(f"Error: {result['error']}")
+                else:
+                    print(f"Sharing file: {result['message']}")
+                    print(f"File ID: {result['file_id']}")
+            
+            elif cmd[0] == "status":
+                print("\nShared Files:")
+                if not shared_files:
+                    print("  No files being shared")
+                else:
+                    for file_id, info in shared_files.items():
+                        print(f"  {info['filename']} (ID: {file_id})")
+                
+                print("\nActive Downloads:")
+                if not active_downloads:
+                    print("  No active downloads")
+                else:
+                    for file_id, info in active_downloads.items():
+                        progress = len(info["downloaded_chunks"]) / info["total_chunks"] * 100
+                        print(f"  {info['filename']} - {progress:.1f}% ({len(info['downloaded_chunks'])}/{info['total_chunks']} chunks)")
+            
+            elif cmd[0] == "cancel":
+                if len(cmd) < 2:
+                    print("Usage: cancel [file_id]")
+                    continue
+                
+                file_id = cmd[1]
+                result = cancel_download(file_id)
+                
+                if "error" in result:
+                    print(f"Error: {result['error']}")
+                else:
+                    print(result["message"])
+            
+            else:
+                print(f"Unknown command: {cmd[0]}")
+                print_help()
+                
+        except KeyboardInterrupt:
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+    
+    print("Exiting peer client")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='P2P File Sharing Peer')
