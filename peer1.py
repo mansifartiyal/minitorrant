@@ -133,9 +133,15 @@ def share_file(filepath):
         return {"error": "Failed to register with tracker", "details": response.text}
 
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+#  2025-05-26 14:32:01,234 - INFO - Announced file 1234 successfully.
+
+
 logger = logging.getLogger("PeerAnnounce")
+
 
 ANNOUNCE_INTERVAL = 60  # seconds (can be modified if needed)
 
