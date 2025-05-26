@@ -33,6 +33,25 @@ document.addEventListener('DOMContentLoaded', function() {
     checkTrackerConnection();
     
     // Event listeners
+    refreshFilesButton.addEventListener('click', fetchAvailableFiles);
+    
+    uploadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (fileInput.files.length > 0) {
+            shareFile(fileInput.files[0]);
+        }
+    });
+    
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+            uploadButton.disabled = false;
+            const fileName = fileInput.files[0].name;
+            uploadArea.querySelector('p').textContent = fileName;
+        } else {
+            uploadButton.disabled = true;
+            uploadArea.querySelector('p').textContent = 'Drag & drop a file or click to upload';
+        }
+    });
     
     // Drag and drop handling for upload area
     uploadArea.addEventListener('dragover', function(e) {
