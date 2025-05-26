@@ -131,23 +131,7 @@ def share_file(filepath):
     else:
         return {"error": "Failed to register with tracker", "details": response.text}
 
-def announce_periodically(file_id, num_chunks):
-    """Periodically announce to tracker for a specific file"""
-    while file_id in shared_files:
-        try:
-            requests.post(
-                f"{TRACKER_URL}/announce",
-                json={
-                    "peer_id": peer_id,
-                    "file_id": file_id,
-                    "port": peer_port,
-                    "chunks": list(range(num_chunks))
-                }
-            )
-        except:
-            print(f"Failed to announce file {file_id} to tracker")
-        
-        time.sleep(60)  # Announce every minute
+
 
 def download_file(file_id):
     """Download a file by fetching chunks from peers"""
