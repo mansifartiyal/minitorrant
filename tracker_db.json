@@ -1,110 +1,30 @@
 {
-  "0ad8c4613ac7ee50": {
+  "a0a2ada69379f294": {
     "filename": "example.txt",
-    "size": 61,
-    "created_at": 1747227404.2490492,
+    "size": 26,
+    "created_at": 1748156624.3407648,
     "chunks": 1,
     "peers": {
-      "28233b1a": {
+      "9df21cea": {
         "ip": "127.0.0.1",
         "port": 8001,
-        "last_seen": 1747227716.4598746,
-        "chunks": [
-          0
-        ]
-      }
-    }
-  },
-  "c65ba4dae694a519": {
-    "filename": "example.txt",
-    "size": 61,
-    "created_at": 1747234033.9418268,
-    "chunks": 1,
-    "peers": {
-      "6c56669f": {
-        "ip": "127.0.0.1",
-        "port": 8001,
-        "last_seen": 1747234346.2409968,
+        "last_seen": 1748156936.5476985,
         "chunks": [
           0
         ]
       },
-      "61kvj3nn": {
+      "c853a368": {
         "ip": "127.0.0.1",
-        "port": 8000,
-        "last_seen": 1747234071.419295,
+        "port": 8002,
+        "last_seen": 1748156684.8573442,
         "chunks": [
           0
         ]
       },
-      "tfjljwgh": {
+      "2mfoyhzv": {
         "ip": "127.0.0.1",
         "port": 8000,
-        "last_seen": 1747234176.0498254,
-        "chunks": [
-          0
-        ]
-      }
-    }
-  },
-  "5a4ae7b974bed7dc": {
-    "filename": "example.txt",
-    "size": 61,
-    "created_at": 1747234632.021178,
-    "chunks": 1,
-    "peers": {
-      "16e6ac64": {
-        "ip": "127.0.0.1",
-        "port": 8000,
-        "last_seen": 1747234820.156733,
-        "chunks": [
-          0
-        ]
-      },
-      "ccc89111": {
-        "ip": "127.0.0.1",
-        "port": 8001,
-        "last_seen": 1747234776.1885033,
-        "chunks": [
-          0
-        ]
-      },
-      "71rm8iw0": {
-        "ip": "127.0.0.1",
-        "port": 8000,
-        "last_seen": 1747234836.4976945,
-        "chunks": [
-          0
-        ]
-      }
-    }
-  },
-  "238b23a02524781d": {
-    "filename": "example.txt",
-    "size": 61,
-    "created_at": 1747287103.0705574,
-    "chunks": 1,
-    "peers": {
-      "870c5b22": {
-        "ip": "127.0.0.1",
-        "port": 8000,
-        "last_seen": 1747287167.1965194,
-        "chunks": [
-          0
-        ]
-      },
-      "zrsl99t7": {
-        "ip": "127.0.0.1",
-        "port": 8000,
-        "last_seen": 1747287177.0346475,
-        "chunks": [
-          0
-        ]
-      },
-      "a734a395": {
-        "ip": "127.0.0.1",
-        "port": 8001,
-        "last_seen": 1747287178.4750383,
+        "last_seen": 1748156883.6043296,
         "chunks": [
           0
         ]
