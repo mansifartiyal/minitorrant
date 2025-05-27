@@ -83,7 +83,25 @@ def announce():
     
     save_db(db)
     
-   
+    # Return list of peers that have this file
+    peers_with_file = {}
+    for pid, peer_info in db[file_id]["peers"].items():
+        # Don't include the requesting peer in the response
+        if pid != peer_id:
+            # Filter out peers that haven't been seen in the last 5 minutes
+            if time.time() - peer_info["last_seen"] < 300:
+                peers_with_file[pid] = {
+                    "ip": peer_info["ip"],
+                    "port": peer_info["port"],
+                    "chunks": peer_info["chunks"]
+                }
+    
+    return jsonify({
+        "file_id": file_id,
+        "peers": peers_with_file,
+        "total_chunks": db[file_id]["chunks"]
+    })
+
 @app.route('/list', methods=['GET'])
 def list_files():
     """
