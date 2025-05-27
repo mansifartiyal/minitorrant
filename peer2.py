@@ -11,6 +11,15 @@ import logging
 from flask import Flask, request, jsonify
 
 
+# Global variables
+TRACKER_URL = "http://localhost:5000"
+DOWNLOAD_DIR = "downloads"
+UPLOAD_DIR = "uploads"
+CHUNK_SIZE = 1024 * 1024  # 1MB chunks
+peer_id = str(uuid.uuid4())[:8]
+peer_port = None
+active_downloads = {}
+shared_files = {}
 
 
 
