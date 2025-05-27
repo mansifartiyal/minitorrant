@@ -30,5 +30,89 @@
         ]
       }
     }
+  },
+  "67955c5793591ec0": {
+    "filename": "example.txt",
+    "size": 26,
+    "created_at": 1748235733.5751743,
+    "chunks": 1,
+    "peers": {
+      "765ea614": {
+        "ip": "127.0.0.1",
+        "port": 8002,
+        "last_seen": 1748235829.042318,
+        "chunks": [
+          0
+        ]
+      },
+      "prarpmzy": {
+        "ip": "127.0.0.1",
+        "port": 8000,
+        "last_seen": 1748235844.5729077,
+        "chunks": []
+      }
+    }
+  },
+  "375d523b6566d145": {
+    "filename": "second.txt",
+    "size": 19,
+    "created_at": 1748319413.0824673,
+    "chunks": 1,
+    "peers": {
+      "4ce11bbf": {
+        "ip": "127.0.0.1",
+        "port": 8001,
+        "last_seen": 1748319601.3484652,
+        "chunks": [
+          0
+        ]
+      },
+      "6sevjxel": {
+        "ip": "127.0.0.1",
+        "port": 8000,
+        "last_seen": 1748319430.9871497,
+        "chunks": []
+      },
+      "b5fcdd80": {
+        "ip": "127.0.0.1",
+        "port": 8002,
+        "last_seen": 1748319468.8783948,
+        "chunks": [
+          0
+        ]
+      },
+      "a3ba4xrc": {
+        "ip": "127.0.0.1",
+        "port": 8000,
+        "last_seen": 1748319604.0535622,
+        "chunks": [
+          0
+        ]
+      }
+    }
+  },
+  "26f23da47f1aa900": {
+    "filename": "example.txt",
+    "size": 26,
+    "created_at": 1748319553.6878688,
+    "chunks": 1,
+    "peers": {
+      "b5fcdd80": {
+        "ip": "127.0.0.1",
+        "port": 8002,
+        "last_seen": 1748319592.0807383,
+        "chunks": [
+          0
+        ]
+      },
+      "a3ba4xrc": {
+        "ip": "127.0.0.1",
+        "port": 8000,
+        "last_seen": 1748319602.4980693,
+        "chunks": [
+          0
+        ]
+      }
+    }
   }
 }
